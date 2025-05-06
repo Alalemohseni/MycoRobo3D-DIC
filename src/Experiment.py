@@ -188,7 +188,10 @@ class Experiment:
         Returns:
             str: Path to the created (or existing) base output directory.
         """
+        user_home = os.path.expanduser("~")
+        output_root = output_root = r"C:\Users\abm6706\MycoRobo3D_Output"
         output_base = os.path.join(
+            output_root,
             self.config['output_folder'],
             self.start_time,
             self.config['experiment_name']
