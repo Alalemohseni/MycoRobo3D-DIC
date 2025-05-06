@@ -75,7 +75,12 @@ class Camera:
         exposure_times = []
         for camera in self.cameras:
             try:
-                camera.ExposureAuto.SetValue(mode)
+                if mode == 'Continuous':
+                    camera.ExposureAuto.SetValue('Off')
+                    camera.ExposureTime.SetValue(self.exposure_time)
+                    camera.ExposureAuto.SetValue('Continuous')
+                else:
+                    camera.ExposureAuto.SetValue(mode)    
                 logger.info(
                     f"Auto-exposure '{mode}' enabled for camera: "
                     f"{camera.GetDeviceInfo().GetModelName()}"
